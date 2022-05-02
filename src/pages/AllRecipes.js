@@ -13,14 +13,14 @@ const DUMMY_DATA = [
     name: "Pho",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg",
-    recipe: "None comeback later!",
+    recipe: "Testing something random here!",
   },
   {
     id: "r3",
     name: "Banh mi",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg",
-    recipe: "None comeback later!",
+    recipe: "add pho along with onions!",
   },
 ];
 

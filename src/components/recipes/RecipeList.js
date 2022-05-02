@@ -3,7 +3,7 @@ import classes from "./RecipeList.module.css";
 
 function RecipeList(props) {
   return (
-    <u1 className={classes.list}>
+    <ul className={classes.list}>
       {props.recipes.map((recipes) => (
         <RecipeItem
           key={recipes.id}
@@ -13,7 +13,7 @@ function RecipeList(props) {
           recipe={recipes.recipe}
         />
       ))}
-    </u1>
+    </ul>
   );
 }
 
