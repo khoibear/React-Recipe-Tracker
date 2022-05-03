@@ -1,34 +1,46 @@
+import { useState, useEffect } from "react";
 import RecipeList from "../components/recipes/RecipeList";
 
-const DUMMY_DATA = [
-  {
-    id: "r1",
-    name: "Bun Bo Hue",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg",
-    recipe: "None comeback later!",
-  },
-  {
-    id: "r2",
-    name: "Pho",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg",
-    recipe: "Testing something random here!",
-  },
-  {
-    id: "r3",
-    name: "Banh mi",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg",
-    recipe: "add pho along with onions!",
-  },
-];
 
+//add error handling
 function AllRecipesPage() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadedRecipes, setLoadedRecipes] = useState([]);
+
+  useEffect(()=>{
+    fetch("https://react-recipe-page-default-rtdb.firebaseio.com/recipes.json")
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      const recipes =  [];
+for (const key in data){
+  const  recipe = {
+    id:key,  
+    ...data[key]
+  };
+  recipes.push(recipe);
+}
+
+      setIsLoading(false);
+      setLoadedRecipes(recipes);
+    });
+
+  },[]);
+
+
+  if (isLoading) {
+    return (
+      <section>
+        <p>Loading...</p>
+      </section>
+    );
+  }
+
   return (
     <section>
       <h1>All Recipes</h1>
-      <RecipeList recipes={DUMMY_DATA}/>
+      <RecipeList recipes={loadedRecipes} />
     </section>
   );
 }
